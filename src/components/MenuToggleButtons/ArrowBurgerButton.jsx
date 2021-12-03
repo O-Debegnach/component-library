@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Burger from "./Burger";
+import PropTypes from "prop-types";
 
 const StyledArrowBurger = styled(Burger)`
 	span {
@@ -12,13 +13,21 @@ const StyledArrowBurger = styled(Burger)`
 		left: 1%;
 		width: 99%;
 		top: ${(props) => (props.active ? "45%" : 0)};
-		transform-origin: right;
+		transform-origin: ${(props) =>
+			props.direction == "left" ? "right" : "left"};
 		transition: top 0.5s, width ${(props) => (props.active ? ".1s" : ".2s")},
 			transform 0.5s;
 		transition-delay: ${(props) =>
 			props.active ? "10ms, 0ms" : "0ms, 100ms"};
-		transform: translateX(${(props) => (props.active ? "-100%" : "0px")})
-			rotate(${(props) => (props.active ? "150deg" : "0deg")});
+		transform: translateX(
+				${(props) =>
+					props.direction == "left"
+						? props.active && "-100%"
+						: props.active && "240%"}
+			)
+			rotate(
+				${(props) => props.direction == "right" && props.active && "-"}${(props) => props.active && "150deg"}
+			);
 
 		width: ${(props) => props.active && "40%"};
 	}
@@ -26,18 +35,26 @@ const StyledArrowBurger = styled(Burger)`
 	span:nth-child(3) {
 		position: absolute;
 		bottom: ${(props) => (props.active ? "45%" : 0)};
-		transform-origin: right;
+		transform-origin: ${(props) =>
+			props.direction == "left" ? "right" : "left"};
 		transition: bottom 0.5s,
 			width ${(props) => (props.active ? ".1s" : ".2s")}, transform 0.5s;
 		transition-delay: ${(props) =>
 			props.active ? "10ms, 0ms" : "0ms, 100ms"};
-		transform: translateX(${(props) => props.active && "-100%"})
-			rotate(${(props) => (props.active ? "-150deg" : "0deg")});
+		transform: translateX(
+				${(props) =>
+					props.direction == "left"
+						? props.active && "-100%"
+						: props.active && "240%"}
+			)
+			rotate(
+				${(props) => props.direction == "left" && props.active && "-"}${(props) => props.active && "150deg"}
+			);
 
 		width: ${(props) => props.active && "40%"};
 	}
 `;
-const ArrowBurgerButton = (props) => {
+const ArrowBurgerButton = ({ className, color, direction }) => {
 	const [active, setActive] = useState(false);
 	const handleActivation = (e) => {
 		setActive(!active);
@@ -45,12 +62,19 @@ const ArrowBurgerButton = (props) => {
 
 	return (
 		<StyledArrowBurger
-			className={props.className}
+			direction={direction}
+			className={className}
 			onClick={handleActivation}
 			active={active}
-			color={props.color}
+			color={color}
 		></StyledArrowBurger>
 	);
+};
+
+ArrowBurgerButton.propTypes = {
+	direction: PropTypes.oneOf(["left", "right"]),
+	style: PropTypes.object,
+	className: PropTypes.string,
 };
 
 export default ArrowBurgerButton;
