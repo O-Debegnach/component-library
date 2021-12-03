@@ -33,6 +33,9 @@ Burger.defaultProps = {
 };
 
 Burger.propTypes = {
+	style: PropTypes.object,
+	className: PropTypes.string,
+	onClick: PropTypes.func,
 	color: (props, propName, componentName) => {
 		let res = !/^#(?:[0-9A-F]{3}){1,2}$/i.test(props[propName]);
 		console.log(

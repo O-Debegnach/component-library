@@ -26,7 +26,7 @@ const App = () => {
 			<h1>Pruebas de Componentes</h1>
 			<Grid>
 				<CrossBurgerButton className="hola" />
-				<ArrowBurgerButton className="hola" color="#456" size="300px" />
+				<ArrowBurgerButton direction className="hola" color="#456" size="300px" />
 			</Grid>
 		</div>
 	);

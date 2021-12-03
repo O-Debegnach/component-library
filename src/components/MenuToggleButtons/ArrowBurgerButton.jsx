@@ -39,7 +39,6 @@ const StyledArrowBurger = styled(Burger)`
 `;
 const ArrowBurgerButton = (props) => {
 	const [active, setActive] = useState(false);
-	const size = parseInt(props.size);
 	const handleActivation = (e) => {
 		setActive(!active);
 	};
@@ -48,10 +47,8 @@ const ArrowBurgerButton = (props) => {
 		<StyledArrowBurger
 			className={props.className}
 			onClick={handleActivation}
-			bgColor={props.bgColor}
 			active={active}
 			color={props.color}
-			size={size}
 		></StyledArrowBurger>
 	);
 };

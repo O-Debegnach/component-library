@@ -25,7 +25,6 @@ const StyledCrossBurger = styled(Burger)`
 
 const CrossBurgerButton = (props) => {
 	const [active, setActive] = useState(false);
-	const size = parseInt(props.size);
 	const handleActivation = (e) => {
 		setActive(!active);
 		console.log(active);
@@ -35,12 +34,14 @@ const CrossBurgerButton = (props) => {
 		<StyledCrossBurger
 			className={props.className}
 			onClick={handleActivation}
-			bgColor={props.bgColor}
 			active={active}
 			color={props.color}
-			size={size}
 		/>
 	);
 };
+
+CrossBurgerButton.propTypes = {
+
+}
 
 export default CrossBurgerButton;
